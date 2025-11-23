@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerBullet AI – Resume Bullet Rewriter</title>
+    <style>
+        body{font-family:-apple-system,Arial,sans-serif;max-width:640px;margin:40px auto;padding:20px;background:#f8f9fa}
+        h1{color:#1a1a1a;text-align:center;margin-bottom:8px}
+        p{text-align:center;color:#555;margin-bottom:20px}
+        textarea{width:100%;height:120px;padding:12px;font-size:16px;border:1px solid #ddd;border-radius:8px}
+        button{background:#0066ff;color:white;border:none;padding:14px;font-size:18px;border-radius:8px;margin:15px 0;cursor:pointer;width:100%}
+        button:hover{background:#0052cc}
+        #output{margin-top:25px;background:white;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+        .bullet{background:#e6f2ff;padding:12px;margin:10px 0;border-radius:6px;font-size:16px}
+        footer{margin-top:50px;text-align:center;color:#888;font-size:14px}
+    </style>
+</head>
+<body>
+    <h1>PowerBullet AI</h1>
+    <p>Paste any weak resume bullet → get 5 ATS-friendly, quantified versions instantly</p>
+    <textarea id="input" placeholder="e.g. Managed a team of 5 and handled daily operations"></textarea><br>
+    <button onclick="rewrite()">Rewrite My Bullet →</button>
+    <div id="output"></div>
+    <footer>Coded with ♥ by your AI tool builder</footer>
+
+<script>
+function rewrite() {
+    const input = document.getElementById('input').value.trim();
+    if (!input) {alert("Paste a bullet first!"); return;}
+    const actions = ["Led","Drove","Spearheaded","Optimized","Accelerated","Revamped","Boosted","Streamlined","Orchestrated","Transformed"];
+    const results = ["increasing revenue 42%","slashing costs 28%","boosting efficiency 55%","exceeding targets 135%","growing team output 3.2×","reducing turnaround time 60%","improving customer satisfaction 47%","scaling operations from 10 to 500 users","cutting errors 73%","achieving 99.9% uptime"];
+    let html = "<h3 style='color:#0066ff'>Your 5 Power Bullets:</h3>";
+    for(let i=0;i<5;i++){
+        const action = actions[Math.floor(Math.random()*actions.length)];
+        const result = results[Math.floor(Math.random()*results.length)];
+        const newBullet = "• " + input.replace(/^(managed|handled|responsible for|worked on|helped|assisted).?\s*/i, "") + " " + action.toLowerCase() + " initiatives that " + result.toLowerCase();
+        html += `<div class="bullet">${newBullet.charAt(0).toUpperCase() + newBullet.slice(1)}</div>`;
+    }
+    document.getElementById('output').innerHTML = html;
+}
+</script>
+</body>
+</html>
